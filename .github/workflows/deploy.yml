@@ -1,4 +1,6 @@
-name: Deploy Quartz site
+git add .github/workflows/deploy.yml
+git commit -m "Fix Quartz deploy workflow (Node 22 + npm update)"
+git push origin principalnamename: Deploy Quartz site
 
 on:
   push:
@@ -18,9 +20,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (force compatible npm)
+        run: |
+          npm install -g npm@latest
+          npm ci
 
       - name: Build Quartz
         run: npx quartz build
