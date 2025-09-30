@@ -3,7 +3,7 @@ name: Deploy Quartz site
 on:
   push:
     branches:
-      - main
+      - principal
 
 permissions:
   contents: write   # nécessaire pour publier sur gh-pages
@@ -13,9 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          ref: main
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
